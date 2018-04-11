@@ -3,6 +3,7 @@ package com.example.game.service;
 import com.example.game.domain.pojo.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface TestService {
 
@@ -35,17 +36,17 @@ public interface TestService {
 	Boolean updateSupervisorEvent(SupervisorEvent supervisorEvent);
 	Boolean updateUser(User user);
 
-	List<Agency> queryAgency(List<String> Conditions, List<Object> values);
-	List<Brand> queryBrand(List<String> Conditions, List<Object> values);
-	List<Car> queryCar(List<String> Conditions, List<Object> values);
-	List<Channel> queryChannel(List<String> Conditions, List<Object> values);
-	List<City> queryCity(List<String> Conditions, List<Object> values);
-	List<Order> queryOrder(List<String> Conditions, List<Object> values);
-	List<OrderDetail> queryOrderDetail(List<String> Conditions, List<Object> values);
-	List<Province> queryProvince(List<String> Conditions, List<Object> values);
-	List<Supervisor> querySupervisor(List<String> Conditions, List<Object> values);
-	List<SupervisorEvent> querySupervisorEvent(List<String> Conditions, List<Object> values);
-	List<User> queryUser(List<String> Conditions, List<Object> values);
+	List<Agency> queryAgency(Map<String,Object> conditions);
+	List<Brand> queryBrand(Map<String,Object> conditions);
+	List<Car> queryCar(Map<String,Object> conditions);
+	List<Channel> queryChannel(Map<String,Object> conditions);
+	List<City> queryCity(Map<String,Object> conditions);
+	List<Order> queryOrder(Map<String,Object> conditions);
+	List<OrderDetail> queryOrderDetail(Map<String,Object> conditions);
+	List<Province> queryProvince(Map<String,Object> conditions);
+	List<Supervisor> querySupervisor(Map<String,Object> conditions);
+	List<SupervisorEvent> querySupervisorEvent(Map<String,Object> conditions);
+	List<User> queryUser(Map<String,Object> conditions);
 
 
 

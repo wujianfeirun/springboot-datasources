@@ -2,9 +2,9 @@ package com.example.game.domain.pojo;
 
 public class User {
     String user_name;
-    String         phone;
+    String phone;
     String sex;
-    String         soft_del;
+    String soft_del;
     String create_time;
 
     public String getUser_name() {

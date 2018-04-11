@@ -2,9 +2,9 @@ package com.example.game.domain.pojo;
 
 public class SupervisorEvent {
     String supervisor_id;
-    String         event_name;
+    String event_name;
     String ip;
-    String         create_time;
+    String create_time;
 
     public String getSupervisor_id() {
         return supervisor_id;

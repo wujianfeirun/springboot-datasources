@@ -2,15 +2,15 @@ package com.example.game.domain.pojo;
 
 public class Supervisor {
     String supervisor_name;
-    String         supervisor_phone;
+    String supervisor_phone;
     String password;
-    String         sex;
+    String sex;
     String birthday;
-    String         qq;
+    String qq;
     String email;
-    String         head_image_path;
+    String head_image_path;
     String status;
-    String         create_time;
+    String create_time;
 
     public String getSupervisor_name() {
         return supervisor_name;
