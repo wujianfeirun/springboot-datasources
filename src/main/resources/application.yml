@@ -37,6 +37,6 @@ mybatis:
   config-location: classpath:mybatis-config.xml
 logging:
   config: classpath:log4j2.xml
-  
+
 
       

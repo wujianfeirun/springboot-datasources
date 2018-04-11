@@ -208,7 +208,8 @@ public class BigProjectController {
 
     @RequestMapping(value = "/queryUser",method = RequestMethod.POST)
     public List<User> queryUser(@RequestBody User user) throws ExecutionException, InterruptedException {
-        return testService.queryUserList(user);
+        List<User> userList = testService.queryUserList(user);
+        return userList;
     }
 
     @RequestMapping("/test1/{var}")
