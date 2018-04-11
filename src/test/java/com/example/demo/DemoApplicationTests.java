@@ -1,3 +1,4 @@
+/*
 package com.example.demo;
 
 import org.junit.Before;
@@ -39,3 +40,4 @@ public class DemoApplicationTests {
 	}
 
 }
+*/

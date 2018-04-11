@@ -1,9 +1,12 @@
 package com.example.game.service;
 
+import com.example.game.domain.pojo.CarInfo;
+
 public interface TestService {
 
-	Integer queryCountByMester();
+	Integer queryCountBySlave();
 	
-	Integer queryCountBySavle();
-	
+	Integer insertIntoMaster();
+
+	Integer insertInforToMaster(CarInfo carInfo);
 }

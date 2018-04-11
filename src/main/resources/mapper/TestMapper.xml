@@ -3,7 +3,11 @@
 <mapper namespace="com.example.game.domain.mapper.TestMapper">
 
     <select id="queryCount" resultType="Integer">
-    	SELECT count(1) FROM browse_user_record
-    </select>  
-    
+    	SELECT count(*) FROM project.carInfo
+    </select>
+
+
+    <update id="insertCarRow"  parameterType="com.example.game.domain.pojo.CarInfo">
+        INSERT INTO project.carInfo(province,city,name,code,tel,address) VALUES(#{province},#{city},#{name},#{code},#{tel},#{address});
+    </update>
 </mapper>

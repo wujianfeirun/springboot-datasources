@@ -1,5 +1,6 @@
 package com.example.game.service.impl;
 
+import com.example.game.domain.pojo.CarInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,23 +29,33 @@ public class TestServiceImpl implements TestService {
 	private TestMapper testMapper;
 	
 	@Override
-	@MyDataSource(DataSourceType.Master)
-	public Integer queryCountByMester() {
+	@MyDataSource(DataSourceType.Slave)
+	public Integer queryCountBySlave() {
 		return testMapper.queryCount();
 	}
 
 	
 	@Override
-	@MyDataSource(DataSourceType.Slave)
+	@MyDataSource(DataSourceType.Master)
 	@Transactional
-	public Integer queryCountBySavle() {
+	public Integer insertIntoMaster() {
 		//测试事务
-		testMapper.updateAdminByName();
-		Integer rows = testMapper.updateAdminByName();
+		Integer rows = testMapper.insertRow();
 		if(rows<=0) {	//更新小于1 执行回滚
 			throw new RuntimeException();
 		}
 		return rows;
 	}
 
+    @Override
+    @MyDataSource(DataSourceType.Master)
+    @Transactional
+    public Integer insertInforToMaster(CarInfo carInfo) {
+        //测试事务
+        Integer rows = testMapper.insertCarRow(carInfo);
+        if(rows<=0) {	//更新小于1 执行回滚
+            throw new RuntimeException();
+        }
+        return rows;
+    }
 }

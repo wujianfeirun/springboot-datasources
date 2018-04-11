@@ -13,7 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 public class TestPojo{
+	private int id;
 	private String name;
 	private Integer age;
-	private String sex;
+	private String phone;
 }
