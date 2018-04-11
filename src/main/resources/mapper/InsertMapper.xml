@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bigfactory.core.domain.mapper.TestMapper">
+
+    <select id="queryCount" resultType="Integer">
+    	SELECT count(*) FROM ad.t_order_detail
+    </select>
+
+
+    <update id="insertCarRow"  parameterType="com.bigfactory.core.domain.pojo.CarInfo">
+        INSERT INTO ad.t_order_detail(province,city,name,code,tel,address) VALUES(#{province},#{city},#{name},#{code},#{tel},#{address});
+    </update>
+
+    <update id="insertAgency" parameterType="com.bigfactory.core.domain.pojo.Agency">
+        INSERT INTO ad.t_agency(city_id,agency_name,agency_address,connect_phone,create_time) VALUES(    #{city_id},#{agency_name},#{agency_address}, #{connect_phone},#{create_time});
+    </update>
+    <update id="insertBrand" parameterType="com.bigfactory.core.domain.pojo.Brand">
+        INSERT INTO ad.t_brand( name,decription,status)VALUES(#{name}, #{decription}, #{status});
+    </update>
+    <update id="insertCar" parameterType="com.bigfactory.core.domain.pojo.Car">
+        INSERT INTO ad.t_car(name,description,status, brand_id)VALUES(#{name},#{description},#{status}, #{brand_id});
+    </update>
+    <update id="insertChanner" parameterType="com.bigfactory.core.domain.pojo.Channel">
+        INSERT INTO ad.t_channel(name,status,url) VALUES(#{name},#{status},#{url});
+    </update>
+    <update id="insertCity" parameterType="com.bigfactory.core.domain.pojo.City">
+        INSERT INTO ad.t_city( province_id,city_name) VALUES(#{province_id}, #{city_name});
+    </update>
+    <update id="insertOrder" parameterType="com.bigfactory.core.domain.pojo.Order">
+        INSERT INTO ad.t_order(user_name,user_phone,user_sex, agency_id,city_id,province_id,car_type_id,channel_id,create_time,update_time,status,)
+        VALUES( #{user_name},#{user_phone},#{user_sex},#{agency_id},#{city_id},#{province_id},#{car_type_id},#{channel_id},#{create_time},#{update_time},#{status});
+    </update>
+    <update id="insertOrderDetail" parameterType="com.bigfactory.core.domain.pojo.OrderDetail">
+        INSERT INTO ad.t_order_detail( name,sex,mobile,province,city,agentName,agentCode,carType,carTypeCode,mediaName,mediaUrl,subject,terminal,create_time,is_activity)
+        VALUES( #{name},#{sex},#{mobile}, #{province}, #{city},#{agentName},#{agentCode},#{carType},#{carTypeCode},#{mediaName},#{mediaUrl},#{subject},#{terminal},#{create_time},#{is_activity});
+    </update>
+    <update id="insertProvince" parameterType="com.bigfactory.core.domain.pojo.Province">
+        INSERT INTO ad.t_province( province_name) VALUES(#{province_name});
+    </update>
+    <update id="insertSupervisor" parameterType="com.bigfactory.core.domain.pojo.Supervisor">
+        INSERT INTO ad.t_supervisor( supervisor_name,supervisor_phone,password,sex,birthday,qq,email,head_image_path,status,create_time)
+        VALUES(#{supervisor_name},#{supervisor_phone},#{password},#{sex},#{birthday},#{qq},#{email},#{head_image_path},#{status},#{create_time});
+    </update>
+    <update id="insertProvinceEvent" parameterType="com.bigfactory.core.domain.pojo.SupervisorEvent">
+        INSERT INTO ad.t_province_event( supervisor_id,event_name,ip,create_time)
+        VALUES(#{supervisor_id},#{event_name},#{ip},#{create_time});
+    </update>
+
+    <update id="insertUser" parameterType="com.bigfactory.core.domain.pojo.User">
+        INSERT INTO ad.t_province( user_name,phone,sex,soft_del,create_time)
+        VALUES(#{user_name},#{phone},#{sex},#{soft_del},#{create_time});
+    </update>
+</mapper>
