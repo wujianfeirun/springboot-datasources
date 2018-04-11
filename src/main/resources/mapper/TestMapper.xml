@@ -15,10 +15,10 @@
         INSERT INTO ad.t_agency(city_id,agency_name,agency_address,connect_phone,create_time) VALUES(    #{city_id},#{agency_name},#{agency_address}, #{connect_phone},#{create_time});
     </update>
     <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
-        INSERT INTO ad.t_brand( name,decription,status,) VALUES(#{name}, #{decription}, #{status});
+        INSERT INTO ad.t_brand( name,decription,status)VALUES(#{name}, #{decription}, #{status});
     </update>
     <update id="insertCar" parameterType="com.example.game.domain.pojo.Car">
-        INSERT INTO ad.t_car(name,description,status, brand_id,) VALUES(#{name},#{description},#{status}, #{brand_id});
+        INSERT INTO ad.t_car(name,description,status, brand_id)VALUES(#{name},#{description},#{status}, #{brand_id});
     </update>
     <update id="insertChanner" parameterType="com.example.game.domain.pojo.Channel">
         INSERT INTO ad.t_channel(name,status,url) VALUES(#{name},#{status},#{url});
