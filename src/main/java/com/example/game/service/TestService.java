@@ -36,17 +36,17 @@ public interface TestService {
 	Boolean updateSupervisorEvent(SupervisorEvent supervisorEvent);
 	Boolean updateUser(User user);
 
-	List<Agency> queryAgency(Map<String,Object> conditions);
-	List<Brand> queryBrand(Map<String,Object> conditions);
-	List<Car> queryCar(Map<String,Object> conditions);
-	List<Channel> queryChannel(Map<String,Object> conditions);
-	List<City> queryCity(Map<String,Object> conditions);
-	List<Order> queryOrder(Map<String,Object> conditions);
-	List<OrderDetail> queryOrderDetail(Map<String,Object> conditions);
-	List<Province> queryProvince(Map<String,Object> conditions);
-	List<Supervisor> querySupervisor(Map<String,Object> conditions);
-	List<SupervisorEvent> querySupervisorEvent(Map<String,Object> conditions);
-	List<User> queryUser(Map<String,Object> conditions);
+	List<Agency> queryAgency(Agency agency);
+	List<Brand> queryBrand(Brand brand);
+	List<Car> queryCar(Car car);
+	List<Channel> queryChannel(Channel channel);
+	List<City> queryCity(City city);
+	List<Order> queryOrder(Order order);
+	List<OrderDetail> queryOrderDetail(OrderDetail orderDetail);
+	List<Province> queryProvince(Province province);
+	List<Supervisor> querySupervisor(Supervisor supervisor);
+	List<SupervisorEvent> querySupervisorEvent(SupervisorEvent supervisorEvent);
+	List<User> queryUser(User user);
 
 
 
