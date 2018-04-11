@@ -11,16 +11,16 @@
         INSERT INTO ad.t_order_detail(province,city,name,code,tel,address) VALUES(#{province},#{city},#{name},#{code},#{tel},#{address});
     </update>
 
-    <update id="insertAgency" parameterType="com.example.game.domain.pojo.Agency">
+ <!--   <update id="insertAgency" parameterType="com.example.game.domain.pojo.Agency">
         INSERT INTO ad.t_agency(city_id,agency_name,agency_address,connect_phone,create_time) VALUES(    #{city_id},#{agency_name},#{agency_address}, #{connect_phone},#{create_time});
-    </update>
+    </update>-->
     <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
         INSERT INTO ad.t_brand( name,decription,status)VALUES(#{name}, #{decription}, #{status});
     </update>
     <update id="insertCar" parameterType="com.example.game.domain.pojo.Car">
         INSERT INTO ad.t_car(name,description,status, brand_id)VALUES(#{name},#{description},#{status}, #{brand_id});
     </update>
-    <update id="insertChanner" parameterType="com.example.game.domain.pojo.Channel">
+    <update id="insertChannel" parameterType="com.example.game.domain.pojo.Channel">
         INSERT INTO ad.t_channel(name,status,url) VALUES(#{name},#{status},#{url});
     </update>
     <update id="insertCity" parameterType="com.example.game.domain.pojo.City">
@@ -41,7 +41,7 @@
         INSERT INTO ad.t_supervisor( supervisor_name,supervisor_phone,password,sex,birthday,qq,email,head_image_path,status,create_time)
         VALUES(#{supervisor_name},#{supervisor_phone},#{password},#{sex},#{birthday},#{qq},#{email},#{head_image_path},#{status},#{create_time});
     </update>
-    <update id="insertProvinceEvent" parameterType="com.example.game.domain.pojo.SupervisorEvent">
+    <update id="insertSupervisorEvent" parameterType="com.example.game.domain.pojo.SupervisorEvent">
         INSERT INTO ad.t_province_event( supervisor_id,event_name,ip,create_time)
         VALUES(#{supervisor_id},#{event_name},#{ip},#{create_time});
     </update>
@@ -53,7 +53,7 @@
 
 
     <select id="queryAgencyList" parameterType="com.example.game.domain.pojo.Agency"
-            resultMap="com.example.game.domain.pojo.Agency">
+            resultType="com.example.game.domain.pojo.Agency">
         SELECT * FROM ad.t_agency
         <where>
             <trim prefixOverrides="and">
@@ -77,7 +77,7 @@
     </select>
 
     <select id="queryUserList" parameterType="com.example.game.domain.pojo.User"
-            resultMap="com.example.game.domain.pojo.User">
+            resultType="com.example.game.domain.pojo.User">
         SELECT * FROM ad.t_users
         <where>
             <trim prefixOverrides="and">
@@ -98,7 +98,7 @@
     </select>
 
     <select id="queryOrderList" parameterType="com.example.game.domain.pojo.Order"
-            resultMap="com.example.game.domain.pojo.Order">
+            resultType="com.example.game.domain.pojo.Order">
         SELECT * FROM ad.order
         <where>
             <trim prefixOverrides="and">
@@ -140,7 +140,7 @@
     </select>
 
     <select id="queryOrderDetailList" parameterType="com.example.game.domain.pojo.OrderDetail"
-            resultMap="com.example.game.domain.pojo.OrderDetail">
+            resultType="com.example.game.domain.pojo.OrderDetail">
         SELECT * FROM ad.order_detail
         <where>
 

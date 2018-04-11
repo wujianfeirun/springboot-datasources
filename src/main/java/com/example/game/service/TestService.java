@@ -12,7 +12,7 @@ public interface TestService {
 	Integer insertInforToMaster(CarInfo carInfo);
 
 
-	Integer insertAgency(Agency agengy);
+//	Integer insertAgency(Agency agengy);
 	Integer insertBrand(Brand brand);
 	Integer insertCar(Car car);
 	Integer insertChannel(Channel channel);
@@ -24,7 +24,12 @@ public interface TestService {
 	Integer insertSupervisorEvent(SupervisorEvent supervisorEvent);
 	Integer insertUser(User user);
 
-	Boolean updateAgency(Agency agengy);
+	List<Agency> queryAgencyList(Agency agency);
+	List<OrderDetail> queryOrderDetailList(OrderDetail orderDetail);
+	List<Order> queryOrderList(Order order);
+	List<User> queryUserList(User user);
+
+/*	Boolean updateAgency(Agency agengy);
 	Boolean updateBrand(Brand brand);
 	Boolean updateCar(Car car);
 	Boolean updateChannel(Channel channel);
@@ -36,15 +41,13 @@ public interface TestService {
 	Boolean updateSupervisorEvent(SupervisorEvent supervisorEvent);
 	Boolean updateUser(User user);
 
-	List<Agency> queryAgencyList(Agency agency);
 	List<Brand> queryBrandList(Brand brand);
 	List<Car> queryCarList(Car car);
 	List<Channel> queryChannelList(Channel channel);
 	List<City> queryCityList(City city);
-	List<Order> queryOrderList(Order order);
-	List<OrderDetail> queryOrderDetailList(OrderDetail orderDetail);
 	List<Province> queryProvinceList(Province province);
 	List<Supervisor> querySupervisorList(Supervisor supervisor);
-	List<SupervisorEvent> querySupervisorEventList(SupervisorEvent supervisorEvent);
-	List<User> queryUserList(User user);
+	List<SupervisorEvent> querySupervisorEventList(SupervisorEvent supervisorEvent);*/
+
+
 }

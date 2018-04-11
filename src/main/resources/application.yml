@@ -9,7 +9,7 @@ server:
 datasource:
   #主库
   master:
-    jdbcUrl: jdbc:mysql://192.168.83.240:3306/ad?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbcUrl: jdbc:mysql://125.65.83.240:3306/ad?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: project
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

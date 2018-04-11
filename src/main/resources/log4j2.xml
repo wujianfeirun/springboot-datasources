@@ -52,7 +52,7 @@
 <!--        <logger name="org.springframework" level="INFO"></logger>
         <logger name="org.mybatis" level="INFO"></logger>-->
         <logger name="com.example" level = "INFO"> <appender-ref ref="RollingFileInfo" />  </logger>
-        <root level="all">
+        <root level="WARN">
             <appender-ref ref="Console"/>
         </root>
     </loggers>
