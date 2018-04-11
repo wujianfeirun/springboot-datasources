@@ -9,7 +9,7 @@ server:
 datasource:
   #主库
   master:
-    jdbcUrl: jdbc:mysql://192.168.83.240:3306/project?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbcUrl: jdbc:mysql://192.168.83.240:3306/ad?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: project
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
@@ -20,7 +20,7 @@ datasource:
   #从库
   slave:
     #并非url而是jdbcUrl(因为这个在获取数据源时一直报错，看了DataSource的属性才知道是jdbcUrl)
-    jdbcUrl: jdbc:mysql://192.168.248.198:3306/project?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    jdbcUrl: jdbc:mysql://192.168.248.198:3306/ad?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: project
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver

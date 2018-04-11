@@ -3,11 +3,60 @@
 <mapper namespace="com.example.game.domain.mapper.TestMapper">
 
     <select id="queryCount" resultType="Integer">
-    	SELECT count(*) FROM project.carInfo
+    	SELECT count(*) FROM ad.t_order_detail
     </select>
 
 
     <update id="insertCarRow"  parameterType="com.example.game.domain.pojo.CarInfo">
-        INSERT INTO project.carInfo(province,city,name,code,tel,address) VALUES(#{province},#{city},#{name},#{code},#{tel},#{address});
+        INSERT INTO ad.t_order_detail(province,city,name,code,tel,address) VALUES(#{province},#{city},#{name},#{code},#{tel},#{address});
+    </update>
+
+    Integer insertAgency(Agency agengy);
+    Integer insertBrand(Brand brand);
+    Integer insertCar(Car car);
+    Integer insertChannel(Channel channel);
+    Integer insertCity(City city);
+    Integer insertOrder(Order order);
+    Integer insertOrderDetail(OrderDetail orderDetail);
+    Integer insertProvince(Province province);
+    Integer insertSupervisor(Supervisor supervisor);
+    Integer insertSupervisorEvent(SupervisorEvent supervisorEvent);
+    Integer insertUser(User user);
+    <update id="insertAgency" parameterType="com.example.game.domain.pojo.Agency">
+        INSERT INTO ad.t_agency(city_id,agency_name,agency_address,connect_phone,create_time) VALUES(    #{city_id},#{agency_name},#{agency_address}, #{connect_phone},#{create_time});
+    </update>
+    <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
+        INSERT INTO ad.t_brand( name,decription,status,) VALUES(#{name}, #{decription}, #{status});
+    </update>
+    <update id="insertCar" parameterType="com.example.game.domain.pojo.Car">
+        INSERT INTO ad.t_car(name,description,status, brand_id,) VALUES(#{name},#{description},#{status}, #{brand_id});
+    </update>
+    <update id="insertChanner" parameterType="com.example.game.domain.pojo.Channel">
+        INSERT INTO ad.t_channel(name,status,url) VALUES(#{name},#{status},#{url});
+    </update>
+    <update id="insertCity" parameterType="com.example.game.domain.pojo.City">
+        INSERT INTO ad.t_city( province_id,city_name) VALUES(#{province_id}, #{city_name});
+    </update>
+
+    user_name,
+    user_phone,
+    user_sex,
+    agency_id,
+    city_id,
+    province_id,
+    car_type_id,
+    channel_id,
+    create_time,
+    update_time,
+    status,
+    <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
+        INSERT INTO ad.t_brand(user_name,user_phone,user_sex, agency_id,city_id,province_id,car_type_id,channel_id,create_time,update_time,status,)
+        VALUES(#{name}, #{decription}, #{status});
+    </update>
+    <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
+        INSERT INTO ad.t_brand( name,decription,status,) VALUES(#{name}, #{decription}, #{status});
+    </update>
+    <update id="insertBrand" parameterType="com.example.game.domain.pojo.Brand">
+        INSERT INTO ad.t_brand( name,decription,status,) VALUES(#{name}, #{decription}, #{status});
     </update>
 </mapper>
