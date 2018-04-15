@@ -1,4 +1,6 @@
-package com.bp.domain.pojo;
+package com.bp.po;
+
+import java.io.Serializable;
 
 public class User {
     String user_name;

@@ -1,18 +1,21 @@
 package com.bp.controller;
 
-import com.bp.domain.pojo.*;
+import com.bp.QueryPO.QueryObject;
+import com.bp.po.*;
+import com.bp.service.CoreService;
+import com.bp.service.impl.CoreServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.bp.mapper.CoreDao;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @CrossOrigin(origins="*" )
-@RestController	//使用restcontroller requestmapping不需要responsebody 自动返回JSON格式
+@RestController    //使用restcontroller requestmapping不需要responsebody 自动返回JSON格式
 public class CoreController {
 
    ExecutorService executorService = Executors.newCachedThreadPool();
@@ -20,14 +23,14 @@ public class CoreController {
 	protected static final Logger logger = LoggerFactory.getLogger(CoreController.class);
 
 	@Resource
-	private CoreDao coreDao;
+	private CoreService coreService;
 
 
     @RequestMapping(value = "/user",method = RequestMethod.POST)
     public String insertUser(@RequestBody User user) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertUser(user);
+        coreService.insertUser(user);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -37,7 +40,7 @@ public class CoreController {
     public String insertBrand(@RequestBody Brand brand) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertBrand(brand);
+        coreService.insertBrand(brand);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -47,7 +50,7 @@ public class CoreController {
     public String insertCar(@RequestBody Car car) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertCar(car);
+        coreService.insertCar(car);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -56,7 +59,7 @@ public class CoreController {
     public String insertChannel(@RequestBody Channel channel) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertChannel(channel);
+        coreService.insertChannel(channel);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -65,7 +68,7 @@ public class CoreController {
     public String insertCity(@RequestBody City city) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertCity(city);
+        coreService.insertCity(city);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -75,7 +78,7 @@ public class CoreController {
     public String insertOrder(@RequestBody Order order) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertOrder(order);
+        coreService.insertOrder(order);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -84,7 +87,7 @@ public class CoreController {
     public String insertOrderDetail(@RequestBody OrderDetail orderdetail) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertOrderDetail(orderdetail);
+        coreService.insertOrderDetail(orderdetail);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -93,7 +96,7 @@ public class CoreController {
     public String insertProvince(@RequestBody Province province) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertProvince(province);
+        coreService.insertProvince(province);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -102,7 +105,7 @@ public class CoreController {
     public String insertSupervisor(@RequestBody Supervisor supervisor) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertSupervisor(supervisor);
+        coreService.insertSupervisor(supervisor);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
@@ -111,32 +114,54 @@ public class CoreController {
     public String insertSupervisorEvent(@RequestBody SupervisorEvent supervisorevent) throws ExecutionException, InterruptedException {
 
         long time = System.currentTimeMillis();
-        coreDao.insertSupervisorEvent(supervisorevent);
+        coreService.insertSupervisorEvent(supervisorevent);
         logger.debug(Thread.currentThread().getName()+"cost "+(System.currentTimeMillis()-time) + "ms");
         return "cost" +(System.currentTimeMillis()) +"ms";
     }
 
-    @RequestMapping(value = "/queryAgency",method = RequestMethod.POST)
-    public List<Agency> queryAgency(@RequestBody Agency agency) throws ExecutionException, InterruptedException {
+    @RequestMapping(value = "/queryAgency/{page}/{rows}",method = RequestMethod.POST)
+    public List<Agency> queryAgency(@PathVariable("page") Integer page,@PathVariable("rows") Integer rows,@RequestBody Agency agency) throws ExecutionException, InterruptedException {
 
-        return coreDao.queryAgencyList(agency);
+        return coreService.queryAgencyList(agency,page,rows);
+    }
+    @RequestMapping(value = "/queryAgencyByTime",method = RequestMethod.POST)
+    public List<Agency> queryAgencyByTime(@RequestBody QueryObject<Agency> queryObject) throws ExecutionException, InterruptedException {
+        List<Agency> orderDetails = coreService.queryAgencyByTime(queryObject.getQueryObj(),queryObject.getFromDate(),queryObject.getToDate(),queryObject.getPage(),queryObject.getRow());
+        return orderDetails;
     }
 
-    @RequestMapping(value = "/queryOrderDetail",method = RequestMethod.POST)
-    public List<OrderDetail> queryOrderDetail(@RequestBody OrderDetail orderDetail) throws ExecutionException, InterruptedException {
-
-        return coreDao.queryOrderDetailList(orderDetail);
+    @RequestMapping(value = "/queryOrderDetailByTime",method = RequestMethod.POST)
+    public List<OrderDetail> queryOrderDetailByTime(@RequestBody QueryObject<OrderDetail> queryObject) throws ExecutionException, InterruptedException {
+        List<OrderDetail> orderDetails = coreService.queryOrderDetailByTime(queryObject.getQueryObj(),queryObject.getFromDate(),queryObject.getToDate(),queryObject.getPage(),queryObject.getRow());
+        return orderDetails;
     }
 
-    @RequestMapping(value = "/queryOrder",method = RequestMethod.POST)
-    public List<Order> queryOrder(@RequestBody Order order) throws ExecutionException, InterruptedException {
-
-        return coreDao.queryOrderList(order);
+    @RequestMapping(value = "/queryOrderDetail/{page}/{rows}",method = RequestMethod.POST)
+    public List<OrderDetail> queryOrderDetail(@PathVariable("page") Integer page,@PathVariable("rows") Integer rows,@RequestBody OrderDetail orderDetail) throws ExecutionException, InterruptedException {
+        List<OrderDetail> orderDetails = coreService.queryOrderDetailList(orderDetail,page,rows);
+        return orderDetails;
     }
 
-    @RequestMapping(value = "/queryUser",method = RequestMethod.POST)
-    public List<User> queryUser(@RequestBody User user) throws ExecutionException, InterruptedException {
-        List<User> userList = coreDao.queryUserList(user);
+    @RequestMapping(value = "/queryOrderByTime",method = RequestMethod.POST)
+    public List<Order> queryOrderByTime(@RequestBody QueryObject<Order> queryObject) throws ExecutionException, InterruptedException {
+        List<Order> orderDetails = coreService.queryOrderByTime(queryObject.getQueryObj(),queryObject.getFromDate(),queryObject.getToDate(),queryObject.getPage(),queryObject.getRow());
+        return orderDetails;
+    }
+
+    @RequestMapping(value = "/queryOrder/{page}/{rows}",method = RequestMethod.POST)
+    public List<Order> queryOrder(@PathVariable("page") Integer page,@PathVariable("rows") Integer rows,@RequestBody Order order) throws ExecutionException, InterruptedException {
+        return coreService.queryOrderList(order,page,rows);
+    }
+
+    @RequestMapping(value = "/queryUserByTime",method = RequestMethod.POST)
+    public List<User> queryUserByTime(@RequestBody QueryObject<User> queryObject) throws ExecutionException, InterruptedException {
+        List<User> orderDetails = coreService.queryUserByTime(queryObject.getQueryObj(),queryObject.getFromDate(),queryObject.getToDate(),queryObject.getPage(),queryObject.getRow());
+        return orderDetails;
+    }
+
+    @RequestMapping(value = "/queryUser/{page}/{rows}",method = RequestMethod.POST)
+    public List<User> queryUser(@PathVariable("page") Integer page,@PathVariable("rows") Integer rows,@RequestBody User user) throws ExecutionException, InterruptedException {
+        List<User> userList = coreService.queryUserList(user,page,rows);
         return userList;
     }
 	

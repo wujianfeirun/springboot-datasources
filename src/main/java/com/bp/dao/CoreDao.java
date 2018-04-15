@@ -1,8 +1,10 @@
-package com.bp.mapper;
+package com.bp.dao;
 
-import com.bp.domain.pojo.*;
+
+import com.bp.po.*;
 
 import java.util.List;
+import java.util.Map;
 
 public interface CoreDao {
 
@@ -36,6 +38,10 @@ public interface CoreDao {
 
     List<User> queryUserList(User user);
 
+    List<Agency> queryAgencyByTime(Map paramsMap);
+    List<OrderDetail> queryOrderDetailByTime(Map paramsMap);
+    List<Order> queryOrderByTime(Map paramsMap);
+    List<User> queryUserByTime(Map paramsMap);
 
 }
 
